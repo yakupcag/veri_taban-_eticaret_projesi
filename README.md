@@ -1,2 +1,1 @@
-"# veri_taban-_eticaret_projesi" 
-"# veri_taban-_eticaret_projesi" 
+Veri tabanı yönetim sistemleri dersi için geliştirdğim e ticaret web sitem
