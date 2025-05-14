@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siparişiniz Alındı - E-Ticaret Sitem</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Bu sayfaya özel küçük stiller (style.css'e de taşınabilir) */
+        .success-icon {
+            font-size: 4rem; /* İkonu büyüt */
+            color: var(--bs-success); /* Bootstrap'in success rengini kullan */
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="mb-4">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">E-Ticaret Sitem</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-anasayfa" href="index.html">Anasayfa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-urunler" href="urunler.html">Ürünler</a>
+                        </li>
+                        <li class="nav-item dropdown" id="header-category-container">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategories" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Kategoriler
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownCategories" id="header-category-dropdown">
+                                </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex mx-auto my-2 my-lg-0" id="header-search-form" role="search" style="max-width: 400px; width: 100%;">
+                        <input class="form-control me-2" type="search" id="header-search-input" placeholder="Ürün ara..." aria-label="Ara">
+                        <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="sepet.html">
+                                <i class="fas fa-shopping-cart"></i> Sepet
+                                <span class="badge bg-danger rounded-pill" id="cart-item-count">0</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" id="auth-links">
+                             <a class="nav-link" href="giris-kayit.html">Giriş Yap / Üye Ol</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5 text-center">
+        <div class="py-5 px-3">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h1 class="display-5 fw-bold text-success">Teşekkürler!</h1>
+            <div class="col-lg-8 mx-auto">
+                <p class="lead mb-4" id="order-success-message">Siparişiniz başarıyla alınmıştır.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="index.html" class="btn btn-primary btn-lg px-4 gap-3">
+                        <i class="fas fa-home"></i> Alışverişe Devam Et
+                    </a>
+                    <a href="hesabim.html#orders" class="btn btn-outline-secondary btn-lg px-4">
+                        <i class="fas fa-receipt"></i> Siparişlerim
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="container py-5 mt-5 border-top">
+        <p class="text-center text-muted">&copy; 2025 E-Ticaret Sitem. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <script src="js/header.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+            const messageP = document.getElementById('order-success-message');
+            if (orderId && messageP) {
+                messageP.innerHTML += ` Sipariş numaranız: <strong class="text-success">#${orderId}</strong>.`;
+            }
+
+            // Eğer header.js updateHeaderAuthLinks ve updateCartIcon (sepeti temizleyince) çağırıyorsa,
+            // ve sipariş başarılı olunca sepet temizleniyorsa (clearCartGlobally),
+            // header'daki sepet sayacı da güncellenmiş olmalı.
+            // Ek olarak, bu sayfada genellikle kullanıcı giriş yapmış olur,
+            // header.js'deki updateHeaderAuthLinks fonksiyonunun çağrılması
+            // "Giriş Yap / Üye Ol" yerine kullanıcı adını/hesabım linkini gösterir.
+            if (typeof window.updateHeaderAuthLinks === 'function') {
+                window.updateHeaderAuthLinks();
+            }
+            if (typeof window.updateCartIcon === 'function') { // Eğer sepet temizlendiyse bu da çağrılmalı
+                window.updateCartIcon();
+            }
+        });
+    </script>
+</body>
+</html>

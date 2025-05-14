@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kategorileri Yönet - Admin Paneli</title>
+    <script src="../js/auth-guard.js"></script>
+    <link rel="stylesheet" href="admin-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header"><h2>Yönetim Paneli</h2></div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Gösterge Paneli</a></li>
+                    <li><a href="admin-urunler.html"><i class="fas fa-box"></i> Ürünler</a></li>
+                    <li class="active"><a href="admin-kategoriler.html"><i class="fas fa-tags"></i> Kategoriler</a></li>
+                    <li><a href="admin-siparisler.html"><i class="fas fa-shopping-cart"></i> Siparişler</a></li>
+                    <li><a href="admin-musteriler.html"><i class="fas fa-users"></i> Müşteriler</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Ayarlar</a></li>
+                    <li><a href="../index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Siteyi Gör</a></li>
+                    <li><a href="#" id="admin-logout-btn"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="admin-main-content">
+            <header class="admin-header">
+                <div class="header-title"><h1>Kategori Yönetimi</h1></div>
+                <div class="header-user">
+                    <i class="fas fa-user-circle"></i> <span id="admin-username-display">Yönetici</span>
+                    <a href="#" class="logout-btn" id="admin-header-logout-btn" title="Çıkış Yap"><i class="fas fa-sign-out-alt"></i></a>
+                </div>
+            </header>
+
+            <section class="content-area">
+                <div class="admin-form" style="margin-bottom: 30px;">
+                    <h3>Yeni Kategori Ekle</h3>
+                    <form id="add-category-form">
+                        <div class="form-group">
+                            <label for="category-name-add">Kategori Adı:</label>
+                            <input type="text" id="category-name-add" name="category_name_add" required>
+                        </div>
+                        <div class="form-actions" style="border-top: none; padding-top: 0;">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Ekle</button>
+                        </div>
+                    </form>
+                    <div id="message-area-category-add" class="form-message" style="display: none; margin-top: 15px;"></div>
+                </div>
+
+                <h3>Mevcut Kategoriler</h3>
+                <div id="message-area-category-list" class="form-message" style="display: none;"></div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Kategori Adı</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody id="category-table-body">
+                        </tbody>
+                </table>
+
+                <div id="edit-category-modal" style="display:none; margin-top:30px; padding:20px; background-color:#fff; border-radius:8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <h3>Kategoriyi Düzenle</h3>
+                    <form id="edit-category-form">
+                        <input type="hidden" id="category-id-edit">
+                        <div class="form-group">
+                            <label for="category-name-edit">Yeni Kategori Adı:</label>
+                            <input type="text" id="category-name-edit" name="category_name_edit" required>
+                        </div>
+                        <div class="form-actions" style="border-top: none; padding-top: 0;">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Kaydet</button>
+                            <button type="button" id="cancel-edit-category-btn" class="btn btn-secondary"><i class="fas fa-times"></i> İptal</button>
+                        </div>
+                    </form>
+                    <div id="message-area-category-edit" class="form-message" style="display: none; margin-top: 15px;"></div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+    <script src="../js/header.js"></script> <script src="js/admin-kategoriler.js"></script> </body>
+</html>

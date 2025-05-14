@@ -1,0 +1,251 @@
+/* style.css (Bootstrap ile Uyumlu ve Modernleştirilmiş Temel Stiller) */
+
+/* Google Fonts'tan modern bir font ekleyelim (Opsiyonel) */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap');
+
+/* Temel Değişkenler (Renkler, Fontlar vb. - Daha kolay yönetim için) */
+:root {
+    --bs-primary-rgb: 78, 115, 223; /* Bootstrap primary rengini temel alalım veya kendi rengini tanımla */
+    --bs-secondary-rgb: 133, 135, 150;
+    --bs-success-rgb: 28, 200, 138;
+    --bs-info-rgb: 54, 185, 204;
+    --bs-warning-rgb: 246, 194, 62;
+    --bs-danger-rgb: 231, 74, 59;
+    --bs-light-rgb: 248, 249, 252;
+    --bs-dark-rgb: 90, 92, 105;
+
+    --bs-font-sans-serif: 'Nunito Sans', sans-serif; /* Google Font */
+    --bs-body-font-family: var(--bs-font-sans-serif);
+    --bs-body-bg: #f8f9fc; /* Hafif farklı bir arkaplan */
+    --bs-body-color: #5a5c69; /* Biraz daha yumuşak bir metin rengi */
+    --bs-border-radius: 0.35rem; /* Bootstrap'in varsayılanından biraz daha belirgin */
+    --bs-box-shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+    --bs-box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    --bs-box-shadow-lg: 0 1rem 3rem rgba(0,0,0,.175);
+    --link-color: #4e73df; /* Ana link rengi */
+    --link-hover-color: #224abe;
+}
+
+/* Bootstrap Değişkenlerini Ezme (body üzerinde veya :root içinde) */
+body {
+    font-family: var(--bs-body-font-family);
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    padding-top: 70px; /* Navbar'ın yüksekliğine göre ayarla (eğer fixed-top olacaksa) */
+                       /* Şimdiki header fixed değil, bu şimdilik isteğe bağlı */
+    font-weight: 400; /* Okunabilirlik için normal ağırlık */
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: none; /* Alt çizgiyi genellikle istemeyiz */
+}
+
+/* Navbar (Header) Düzenlemeleri */
+.navbar {
+    box-shadow: var(--bs-box-shadow-sm);
+    /* background-color: #ffffff !important; Beyaz bir navbar için */
+}
+.navbar .navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.navbar-nav .nav-link {
+    font-weight: 600;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+    color: var(--link-color) !important; /* Bootstrap'in primary rengi */
+}
+#header-search-form .form-control {
+    border-radius: var(--bs-border-radius);
+}
+#header-search-form .btn-outline-success {
+    border-color: var(--link-color);
+    color: var(--link-color);
+}
+#header-search-form .btn-outline-success:hover {
+    background-color: var(--link-color);
+    color: #fff;
+}
+
+
+/* Butonlar (Genel İyileştirmeler) */
+.btn {
+    border-radius: var(--bs-border-radius);
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease-in-out;
+}
+.btn-primary {
+    background-color: var(--link-color);
+    border-color: var(--link-color);
+}
+.btn-primary:hover {
+    background-color: var(--link-hover-color);
+    border-color: var(--link-hover-color);
+    transform: translateY(-2px); /* Hafif yukarı kalkma efekti */
+    box-shadow: var(--bs-box-shadow-sm);
+}
+.btn-success {
+     background-color: rgba(var(--bs-success-rgb), 1);
+     border-color: rgba(var(--bs-success-rgb), 1);
+}
+.btn-success:hover {
+    background-color: rgba(var(--bs-success-rgb), 0.85);
+    border-color: rgba(var(--bs-success-rgb), 0.85);
+    transform: translateY(-2px);
+    box-shadow: var(--bs-box-shadow-sm);
+}
+.btn-outline-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--bs-box-shadow-sm);
+}
+
+/* Kartlar (Ürün Kartları vb.) */
+.card {
+    border: none; /* Bootstrap'in default border'ını kaldırıp sadece gölge kullanabiliriz */
+    border-radius: var(--bs-border-radius);
+    box-shadow: var(--bs-box-shadow-sm);
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.card:hover {
+    box-shadow: var(--bs-box-shadow);
+    transform: translateY(-5px); /* Kartın üzerine gelince hafifçe yukarı kalkması */
+}
+.card-title {
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+.card-img-top {
+    border-top-left-radius: var(--bs-border-radius);
+    border-top-right-radius: var(--bs-border-radius);
+}
+
+/* Form Elemanları */
+.form-control, .form-select {
+    border-radius: var(--bs-border-radius);
+    box-shadow: none; /* Focus'ta Bootstrap'in kendi shadow'u yeterli */
+}
+.form-control:focus, .form-select:focus {
+    border-color: var(--link-color);
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Tablolar */
+.table {
+    /* Gerekirse ek stil eklenebilir */
+}
+.table thead th {
+    font-weight: 600;
+    background-color: #e9ecef; /* Bootstrap table-light rengi */
+    border-bottom-width: 1px;
+}
+
+/* Modallar */
+.modal-content {
+    border-radius: var(--bs-border-radius);
+    border: none;
+    box-shadow: var(--bs-box-shadow-lg);
+}
+.modal-header {
+    border-bottom: 1px solid #dee2e6; /* Bootstrap'in varsayılan border rengi */
+}
+
+/* Hesabım Sayfası Özel Stilleri */
+.account-sidebar .list-group-item {
+    font-weight: 600;
+    border-radius: var(--bs-border-radius) !important; /* Bootstrap'in list-group radius'unu ezmek için */
+    margin-bottom: 0.5rem;
+}
+.account-sidebar .list-group-item.active {
+    background-color: var(--link-color);
+    border-color: var(--link-color);
+}
+.account-sidebar .list-group-item i.fas {
+    width: 20px;
+    text-align: center;
+    margin-right: 10px;
+}
+.content-section { /* hesabim.html'deki bölümler için */
+    background-color: #fff;
+    border-radius: var(--bs-border-radius);
+    box-shadow: var(--bs-box-shadow-sm);
+}
+.status-badge {
+    padding: 0.4em 0.75em; /* Biraz daha dolgun */
+    font-size: .8em;
+    font-weight: 700;
+    border-radius: var(--bs-border-radius);
+    /* Renkler bir önceki CSS'teki gibi kalabilir */
+}
+.status-pending { background-color: rgba(var(--bs-warning-rgb),1); color: #000 !important; }
+.status-processing { background-color: rgba(var(--bs-info-rgb),1); color: #fff !important; }
+.status-shipped { background-color: rgba(var(--bs-secondary-rgb),1); color: #fff !important;}
+.status-delivered { background-color: rgba(var(--bs-success-rgb),1); color: #fff !important;}
+.status-cancelled { background-color: rgba(var(--bs-danger-rgb),1); color: #fff !important;}
+
+.address-card {
+    margin-bottom: 1.5rem;
+    border: 1px solid #e3e6f0; /* Hafif bir border */
+}
+
+/* Sipariş Başarılı Sayfası */
+.success-icon {
+    font-size: 5rem;
+    color: rgba(var(--bs-success-rgb), 1);
+    margin-bottom: 1.5rem;
+}
+
+/* Footer */
+footer.border-top {
+    border-top-color: #e3e6f0 !important; /* Bootstrap'in varsayılanından biraz daha belirgin */
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    color: #858796; /* Daha yumuşak bir footer metin rengi */
+}
+
+/* Responsive Ayarlar (Mobil için Navbar arama formu - bir önceki gibi) */
+@media (max-width: 991.98px) {
+    #header-search-form {
+        width: 100%;
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    body {
+        padding-top: 0; /* Mobil için fixed-top navbar yoksa padding'e gerek yok */
+    }
+}
+
+/* style.css içine eklenebilir (ama JS çözümü daha iyi) */
+
+#auth-links a {
+    /* .nav-link class'ının bazı temel stillerini taklit et */
+    padding-top: var(--bs-nav-link-padding-y, 0.5rem);
+    padding-bottom: var(--bs-nav-link-padding-y, 0.5rem);
+    padding-left: var(--bs-nav-link-padding-x, 0.5rem); /* Veya navbar'daki diğer linklerle aynı padding */
+    padding-right: var(--bs-nav-link-padding-x, 0.5rem);
+    color: var(--bs-nav-link-color, rgba(var(--bs-emphasis-color-rgb), 0.65)); /* Navbar'ın link rengi */
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+#auth-links a:hover,
+#auth-links a:focus {
+    color: var(--bs-nav-link-hover-color, rgba(var(--bs-emphasis-color-rgb), 0.8)); /* Navbar link hover rengi */
+    text-decoration: none;
+}
+
+/* Eğer aktif olduğunda da diğerleri gibi görünmesini istiyorsan */
+#auth-links a.active { /* Bu class'ı JS ile eklemen gerekir */
+    color: var(--bs-navbar-active-color, #000); /* Navbar aktif link rengi */
+}

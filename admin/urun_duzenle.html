@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürünü Düzenle - Admin Paneli</title>
+    <script src="../js/auth-guard.js"></script>
+    <link rel="stylesheet" href="admin-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header"><h2>Yönetim Paneli</h2></div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Gösterge Paneli</a></li>
+                    <li class="active"><a href="admin-urunler.html"><i class="fas fa-box"></i> Ürünler</a></li>
+                    <li><a href="urun_ekle.html"><i class="fas fa-plus-square"></i> Yeni Ürün Ekle</a></li>
+                    <li><a href="admin-siparisler.html"><i class="fas fa-shopping-cart"></i> Siparişler</a></li>
+                    <li><a href="admin-musteriler.html"><i class="fas fa-users"></i> Müşteriler</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Ayarlar</a></li>
+                    <li><a href="../index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Siteyi Gör</a></li>
+                    <li><a href="#" id="admin-logout-btn"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="admin-main-content">
+            <header class="admin-header">
+                <div class="header-title">
+                    <h1>Ürünü Düzenle</h1>
+                </div>
+                <div class="header-user">
+                    <i class="fas fa-user-circle"></i> <span id="admin-username-display">Yönetici</span>
+                    <a href="#" class="logout-btn" id="admin-header-logout-btn" title="Çıkış Yap"><i class="fas fa-sign-out-alt"></i></a>
+                </div>
+            </header>
+
+            <section class="content-area">
+                <form id="edit-product-form" class="admin-form" enctype="multipart/form-data">
+                    <input type="hidden" id="product-id-edit" name="product_id_edit"> <div class="form-group">
+                        <label for="product-name">Ürün Adı:</label>
+                        <input type="text" id="product-name" name="product_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-description">Ürün Açıklaması:</label>
+                        <textarea id="product-description" name="product_description" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-category">Kategori:</label>
+                        <select id="product-category" name="product_category" required>
+                            <option value="">-- Kategori Seçin --</option>
+                            </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-price">Fiyat (TL):</label>
+                        <input type="number" id="product-price" name="product_price" step="0.01" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-stock">Stok Adedi:</label>
+                        <input type="number" id="product-stock" name="product_stock" min="0" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Mevcut Görsel:</label>
+                        <img id="current-product-image-preview" src="#" alt="Mevcut Ürün Görseli" style="max-width: 150px; max-height: 150px; display: none; margin-bottom: 10px; border:1px solid #ddd; padding:5px;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-image-edit">Yeni Ürün Görseli (Değiştirmek istemiyorsanız boş bırakın):</label>
+                        <input type="file" id="product-image-edit" name="product_image"> </div>
+
+                    <div class="form-group">
+                        <label for="product-status">Durum:</label>
+                        <select id="product-status" name="product_status" required>
+                            <option value="aktif">Aktif (Satışta)</option>
+                            <option value="pasif">Pasif (Gizli)</option>
+                            </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Değişiklikleri Kaydet</button>
+                        <a href="admin-urunler.html" class="btn btn-secondary"><i class="fas fa-times"></i> Vazgeç</a>
+                    </div>
+                </form>
+                <div id="message-area-edit" class="form-message" style="display: none; margin-top: 20px;"></div>
+            </section>
+        </main>
+    </div>
+    <script src="../js/header.js"></script>
+    <script src="js/urun-duzenle.js"></script>
+</body>
+</html>
